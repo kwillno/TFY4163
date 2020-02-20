@@ -1,16 +1,16 @@
-# Husk å definere nødvendige biblioteker
+# Importing necessary libraries
 import numpy as np
 import matplotlib.pyplot as plt
 
 
-# Definer konstanter og initialbetingelser
+# Defining constants and initial values
 l = 1
 m = 5
 g = 9.81
 theta_0 = 0.2
 omega_0 = 0.0
 
-# Tidskonstanter
+# Timeconstants
 T_i = 0
 T_f = 10
 T = T_f - T_i
@@ -34,17 +34,17 @@ def euler_cromer_approx(theta_0, omega_0, dt, T_i):
 
     for n in range(1,samples):
         """
-        Beregner ny verdi av omega ved hjelp av gammel theta og omega
+        calculates new value for omega using old value of theta and omega
         """
         omega[n]=omega[n-1]-g/l*theta[n-1]*dt
         
         """
-        Beregner ny verdi av omega ved hjelp av nye omega og gammel theta
+        Calculates new theta using new omega and old theta
         """
         theta[n]=theta[n-1]+omega[n]*dt
         
         """
-        Får et tid-array med samme dimensjon som tidligere arrays for plotting
+        Time array in same dimension for ploting
         """
         t[n]=t[n-1]+dt
         
@@ -56,7 +56,7 @@ def euler_cromer_approx(theta_0, omega_0, dt, T_i):
     """
     return theta,omega,t
 
-# Tilordner arrays til output-ene fra approksimeringsfunksjonen
+# Saves approximations in arrays
 thetaArr,omegaArr,timeArr = euler_cromer_approx(theta_0,omega_0,dt,T_i)
 
 plt.figure("Test")
@@ -70,27 +70,27 @@ plt.grid()
 # Oppgave 2
 def energy_calculation(theta_0, omega_0, dt):
     """
-    Regner ut total energi for systemet numerisk ved euler-cromer methoden.
+    Calculates total energy for the system by Euler-Cromes method
     Inputs:
-    theta_0: startverdi av theta (vinkelutslag)
-    omega_0: startverdi av omega (vinkelhastighet)
+    theta_0: initial value of theta (displacement)
+    omega_0: initial value of omega (angular velocity)
     
     """
-    samples = int(T/dt) # Finner sample-rate for valgt dt
+    samples = int(T/dt) # Finds samplerate for chosen dt
     
-    # Lager arrays med verdier vha Euler-cromer approksimasjon
+    # Creat array of values using Euler-Cromer approx
     thetaArr, omegaArr, timeArr = euler_cromer_approx(theta_0,omega_0,dt,T_i)
     
-    # Funksjonsuttrykk for total-energi
+    # Function for total energy
     energy_func = lambda m,l,omega,theta: (1/2)*m*(l**2)*(omega**2) + (1/2)*m*g*l*(theta**2)
     
-    # Får å få et samme-dimensjonert tid-array
+    # Time array in same dimension 
     t = np.linspace(T_i,T,samples)
     energy = np.zeros(samples)
     
     for i in range(len(t)):
         """
-        Beregning av total-energi for hvert t-element i t-array
+        Calculation of total energy for every time-element
         """
         energy[i] = energy_func(m,l,omegaArr[i],thetaArr[i])
     
@@ -99,7 +99,7 @@ def energy_calculation(theta_0, omega_0, dt):
 
     return t, E_total
 
-# Verdier av dt vi ønsker å plotte for
+# Values for dt we want to plot for
 dt1 = 0.001
 dt2 = 0.004
 dt3 = 0.007
