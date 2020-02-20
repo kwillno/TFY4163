@@ -67,7 +67,7 @@ plt.grid()
 # plt.show()
 
 
-# Oppgave 2
+# Task 2
 def energy_calculation(theta_0, omega_0, dt):
     """
     Calculates total energy for the system by Euler-Cromes method
@@ -99,7 +99,7 @@ def energy_calculation(theta_0, omega_0, dt):
 
     return t, E_total
 
-# Values for dt we want to plot for
+# Values for dt to plot for
 dt1 = 0.001
 dt2 = 0.004
 dt3 = 0.007
@@ -115,7 +115,7 @@ plt.legend()
 plt.grid()
 # plt.show()
 
-# Oppgave 3
+# Task 3
 def energy_diff(time,E_tot):
     """
     Plotter en periode av Total Energi graf og finner differanse i Total Energi i start og slutt av periode.
@@ -150,7 +150,7 @@ def energy_diff(time,E_tot):
 energy_diff(energy_calculation(theta_0,omega_0,dt3)[0],energy_calculation(theta_0,omega_0,dt3)[1])
 
 
-# Oppgave 1
+# Task 1
 def euler_cromer_method(theta_0, omega_0, dt, T_i):
     """
     Calculates angular displacement and angular velocity using the Euler-Cromer method
