@@ -70,9 +70,9 @@ theta, omega, tim = euler_method(theta_0,omega_0,dt)
 
 
 plt.figure(1)
-plt.title("Pendelutslag")
-plt.plot(times,theta_val,"--r",label="Analytisk")
-plt.plot(tim,theta,"--b",label="Numerisk løsning (Euler)")
+plt.title("Displacement")
+plt.plot(times,theta_val,"--r",label="Analytical")
+plt.plot(tim,theta,"--b",label="Numerical solution (Euler)")
 plt.xlabel("Time(s)")
 plt.ylabel("Position(rad)")
 plt.legend(loc="upper right")
@@ -112,7 +112,7 @@ l = 1.0
 phi = 0
 
 plt.figure(2)
-plt.title("Total Energi")
+plt.title("Total Energy")
 plt.plot(energy_calculation(theta_0,omega_0,dt1)[0],energy_calculation(theta_0,omega_0,dt1)[1], label="dt = " + str(dt1))
 plt.plot(energy_calculation(theta_0,omega_0,dt2)[0],energy_calculation(theta_0,omega_0,dt2)[1], label="dt = " + str(dt2))
 plt.plot(energy_calculation(theta_0,omega_0,dt3)[0],energy_calculation(theta_0,omega_0,dt3)[1], label="dt = " + str(dt3))
