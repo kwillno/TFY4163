@@ -105,7 +105,7 @@ dt2 = 0.004
 dt3 = 0.007
 
 plt.figure(2)
-plt.title("Total Energi")
+plt.title("Total Energy")
 plt.plot(energy_calculation(theta_0,omega_0,dt1)[0],energy_calculation(theta_0,omega_0,dt1)[1], label="dt = 0.001")
 plt.plot(energy_calculation(theta_0,omega_0,dt2)[0],energy_calculation(theta_0,omega_0,dt2)[1], label="dt = 0.004")
 plt.plot(energy_calculation(theta_0,omega_0,dt3)[0],energy_calculation(theta_0,omega_0,dt3)[1], label="dt = 0.007")
@@ -118,15 +118,16 @@ plt.grid()
 # Task 3
 def energy_diff(time,E_tot):
     """
-    Plotter en periode av Total Energi graf og finner differanse i Total Energi i start og slutt av periode.
+    Plots one period of total energy and finds difference between start and end of period
     Inputs:
     
-    time: Tid-array av samme dimensjon som E_tot
-    E_tot: Array med total energi.
+    time: time array with same dimension as E_tot
+    E_tot: Array of total energy
+
     """
     E_tot_0 = E_tot[0]
     
-    # Uttryk for tid ved slutten av periode
+    # Expression for time by end of period
     T_p = 2*np.pi*np.sqrt(l/g)
     
     i = 0
@@ -139,18 +140,18 @@ def energy_diff(time,E_tot):
         time_p[j] = time[j]
         E_tot_p[j] = E_tot[j]
     
-    plt.figure("En periode Total Energi")
-    plt.title("En periode Total Energi")
+    plt.figure("One period Total Energy")
+    plt.title("One period Total Energy")
     plt.plot(time_p,E_tot_p,label="dt = 0.001")
     plt.grid()
     # plt.show()
     
-    print("Delta E etter en periode: " + str(abs(E_tot_p[0]-E_tot_p[-1])))
+    print("Delta E after one period: " + str(abs(E_tot_p[0]-E_tot_p[-1])))
         
 energy_diff(energy_calculation(theta_0,omega_0,dt3)[0],energy_calculation(theta_0,omega_0,dt3)[1])
 
 
-# Task 1
+# Task 4
 def euler_cromer_method(theta_0, omega_0, dt, T_i):
     """
     Calculates angular displacement and angular velocity using the Euler-Cromer method
@@ -168,17 +169,17 @@ def euler_cromer_method(theta_0, omega_0, dt, T_i):
 
     for n in range(1,samples):
         """
-        Beregner ny verdi av omega ved hjelp av gammel theta og omega
+        calculates new value for omega using old value of theta and omega
         """
         omega[n]=omega[n-1]-g/l*np.sin(theta[n-1])*dt
         
         """
-        Beregner ny verdi av omega ved hjelp av nye omega og gammel theta
+        calculates new value of omega by new omega and old theta
         """
         theta[n]=theta[n-1]+omega[n]*dt
         
         """
-        Får et tid-array med samme dimensjon som tidligere arrays for plotting
+        time erray of same dimenion as earlier arrays
         """
         t[n]=t[n-1]+dt
         
@@ -190,7 +191,7 @@ def euler_cromer_method(theta_0, omega_0, dt, T_i):
     """
     return theta,omega,t
 
-# Tilordner arrays til output-ene fra approksimeringsfunksjonen
+# Assigns arrays to function outputs
 thetaArr,omegaArr,timeArr = euler_cromer_method(theta_0,omega_0,dt,T_i)
 
 plt.figure("New Test")
@@ -200,9 +201,9 @@ plt.legend()
 plt.grid()
 # plt.show()
 
-# Oppgave 2
+# Task 5
 
-# Nye startverdier
+# New constants
 
 theta_0 = np.radians(15)
 omega_0 = 0
@@ -236,21 +237,20 @@ plt.grid()
 
 def equation(t, vals):
     """
-    Funksjonen tar inn t, som er en float, og vals som er en array med to elementer
-    i dette tilfellet, [val1, val2], og returnerer verdien av høyre side
-    av ligningene.
+    Function takes in time (float), and vals (array with two elements [val1,val2])
+    returns RHS of vals
     
-    t: float, tid
-    vals: array med verdi for theta og omega
+    t: float, time
+    vals: [theta, omega]
     
-    Return: array med høyre-side av ligningene, som [ligning1, ligning2]
+    Return: array with RHS of equations, as [eq1, eq2]
     """
     theta,omega = vals[0],vals[1]
     
-    # Uttrykk for dw
+    # Expression for dw
     dw = -g/l*np.sin(theta)
     
-    # Uttryk for dtheta
+    # Expression for dtheta
     dtheta = omega
     
     return [dtheta, dw]
@@ -296,8 +296,6 @@ def RK45_method(RHS, theta_0, omega_0, t_1, dt):
 
 
 theta,omega,times = RK45_method(equation, 0.2, 0, 10, 0.01)
-# PLOT VINKELUTSLAGET
-
 
 plt.figure("Scipy")
 plt.plot(times,theta,label="Theta")
