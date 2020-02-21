@@ -7,9 +7,9 @@ The assignments follow progression throughout the semester and get progressivly 
 Below there is a list of due dates for the different assignments.
   
 - Numerical Assignment 1  
- -- January 23rd
+  - January 23rd
 - Numerical Assignment 2  
- -- February 20th
+  - February 20th
 
 # Numerical Project 
 
