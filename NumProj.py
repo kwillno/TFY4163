@@ -18,9 +18,7 @@ t_f = 20
 t_i = 0
 dt = 0.01
 
-# Functions
-
-#       I think these are right, might want to do some checking though
+# FUNCTIONS
 
 d_theta = lambda theta, omega, t : omega
 
@@ -79,49 +77,11 @@ def RK4_method(k, f, theta__0, omega__0, dt):
     
     return theta, omega, t
 
-""" Used this to figure out what the RK4-function did wrong and suceeded!
-def euler_cromer_approx(theta_0, w_0, dt):
-    
-    #Calculates angular displacement and angular velocity 
-    #using the Euler-Cromer method 
-    
-    N = int(t_f/dt)
-    theta = np.zeros(N)
-    w = np.zeros(N)
-    t = np.linspace(0, t_f, N)
-    theta[0] = theta_0
-    w[0] = w_0
-    for i in range(1,N):
-        w[i] = w[i-1] + (F_D*np.sin(omega_D*t[i])-((g/l)*theta[i-1])-(q*w[i-1]))*dt
-        theta[i] = theta[i-1] + w[i]*dt
-    return theta, w, t
-"""
-
-
 
 theta_RK4,omega_RK4,t_RK4 = RK4_method(d_theta, d_omega, theta_0, omega_0, dt)
-#theta_ec,omega_ec,t_ec = euler_cromer_approx(theta_0, omega_0, dt)
-
-"""
-plt.figure("Euler-Cromer")
-plt.title("Calculation using Euler-Cromer")
-plt.plot(t_ec,theta_ec,label="Displacement (rad)")
-plt.legend(loc="upper right")
-plt.show()
-"""
-
 
 plt.figure("RK4")
 plt.title("Calculation using Runge-Kutta 4")
 plt.plot(t_RK4,theta_RK4,label="Displacement (rad)")
 plt.legend(loc="upper right")
 plt.show()
-
-"""
-plt.figure("diff")
-plt.title("Difference in Calculation")
-plt.plot(t_RK4,theta_ec - theta_RK4,label="Displacement (rad)")
-plt.legend(loc="upper right")
-plt.show()
-
-"""
