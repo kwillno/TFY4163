@@ -145,8 +145,8 @@ def RK4_method(k, f, theta_0, omega_0, dt):
     
     Parameters
     -----------
-    k: RHS of equation
-    f: RHS of equation
+    k: RHS of equation for theta
+    f: RHS of equation for omega
     theta0: initial value of theta
     w0: initail value of omega
     dt: timestep

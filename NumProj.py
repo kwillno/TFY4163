@@ -18,6 +18,19 @@ t_f = 20
 t_i = =
 dt = 0.01
 
+# Functions
+
+
+"""
+These need to be updated for project functions
+
+Figure this out
+
+"""
+k = lambda theta : -g/l*theta
+
+f = lambda omega : omega
+
 
 
 def RK4_step(k, f, theta, w, dt):
