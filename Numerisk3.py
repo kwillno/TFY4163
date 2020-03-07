@@ -85,7 +85,7 @@ omega_0 = 0.0
 
 dt = 0.1
 T = 10
-t = np.linspace(0,T,dt)
+t = np.linspace(0,T,int(T/dt))
 
 
 theta_ec,omega_ec,t = euler_cromer_approx(theta_0,omega_0,dt)
@@ -153,7 +153,7 @@ def RK4_method(k, f, theta_0, omega_0, dt):
     
     return theta, w, t
     """
-    t = np.linspace(0,T,T/dt)
+    t = np.linspace(0,T,int(T/dt))
     theta = np.zeros(len(t))
     omega = np.zeros(len(t))
     
@@ -215,7 +215,7 @@ dt_f = 0.1
 dt_delta = 0.01
 T = 20
 
-dt = np.linspace(dt_i,dt_f,T/dt_delta)
+dt = np.linspace(dt_i,dt_f,int(T/dt_delta))
 E_total = np.zeros(len(dt))
 
 for i in range(0,len(dt)):
