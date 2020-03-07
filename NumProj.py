@@ -85,3 +85,59 @@ plt.title("Calculation using Runge-Kutta 4")
 plt.plot(t_RK4,theta_RK4,label="Displacement (rad)")
 plt.legend(loc="upper right")
 plt.show()
+
+
+"""
+Start of assignment 2
+Test of convergense in dt for RK4 method
+And same for Euler-Cromer method
+"""
+
+# Implementation of Euler-Cromer-method
+
+def euler_cromer_method(theta_0, omega_0, dt):
+    """
+    Calculates angular displacement and angular velocity 
+    using the Euler-Cromer method 
+    """
+    N = int(t_f/dt)
+    theta = np.zeros(N)
+    omega = np.zeros(N)
+    t = np.linspace(0, t_f, N)
+    theta[0] = theta_0
+    omega[0] = omega_0
+    for i in range(1,N):
+        omega[i] = omega[i-1] + (F_D*np.sin(omega_D*t[i])-((g/l)*theta[i-1])-(q*omega[i-1]))*dt
+        theta[i] = theta[i-1] + omega[i]*dt
+    return theta, omega, t
+
+
+theta_ec,omega_ec,t_ec = euler_cromer_method(theta_0,omega_0,dt)
+
+
+"""
+Code for plotting EC and diff(RK4,EC)
+Not used in current implementation
+
+plt.figure("EC")
+plt.title("Calculation using Euler-Cromer")
+plt.plot(t_ec,theta_ec,label="Displacement (rad)")
+plt.legend(loc="upper right")
+plt.show()
+
+plt.figure("Diff EC-RK4")
+plt.title("Difference in calculation (EC-RK4)")
+plt.plot(t_RK4,theta_ec-theta_RK4,label="Displacement (rad)")
+plt.legend(loc="upper right")
+plt.show()
+"""
+
+
+
+dt_i = 0.0001
+dt_f = 0.1
+d_dt = dt_i
+
+dt_arr = np.linspace(dt_i,dt_f,int(dt_f/d_dt))
+
+
