@@ -1,6 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy import integrate
+import time
+
+startTime = time.time()
 
 # Physical parameters
 
@@ -84,7 +87,7 @@ plt.figure("RK4")
 plt.title("Calculation using Runge-Kutta 4")
 plt.plot(t_RK4,theta_RK4,label="Displacement (rad)")
 plt.legend(loc="upper right")
-plt.show()
+#plt.show()
 
 
 """
@@ -162,7 +165,7 @@ plt.title("Convergence with variable dt (EC & RK4)")
 plt.plot(dt_arr,conv_RK4,label="RK4")
 plt.plot(dt_arr,conv_EC,label="EC")
 plt.legend(loc="upper right")
-plt.show()
+#lt.show()
 
 """
 Start of assignment 3
@@ -179,7 +182,7 @@ for i in range(len(omega_D_arr)):
     theta_RK4,omega_RK4,t_RK4 = RK4_method(d_theta, d_omega, theta_0, omega_0, dt)
     plt.plot(t_RK4,theta_RK4,label="Omega_D = " + str(omega_D_arr[i]))
 plt.legend(loc="upper right")
-plt.show()
+#plt.show()
 
 omega_D = 3.13
 
@@ -199,7 +202,7 @@ for i in range(len(q_arr)):
     theta_RK4,omega_RK4,t_RK4 = RK4_method(d_theta, d_omega, theta_0, omega_0, dt)
     plt.plot(t_RK4,theta_RK4,label="q = " + str(q_arr[i]))
 plt.legend(loc="upper right")
-plt.show()
+#plt.show()
 
 q = 1.0
 
@@ -222,6 +225,9 @@ for i in range(len(q_arr)):
     theta_RK4,omega_RK4,t_RK4 = RK4_method(d_theta, d_omega, theta_0, omega_0, dt)
     plt.plot(t_RK4,theta_RK4,label=q_arr_desc[i])
 plt.legend(loc="upper right")
+
+endTime = time.time()
+print("Runtime: " + str(endTime-startTime)[:5])
 plt.show()
 
 q = 1.0
