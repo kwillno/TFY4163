@@ -25,7 +25,6 @@ d_theta = lambda theta, omega, t : omega
 d_omega = lambda theta, omega, t : F_D*np.sin(omega_D*t)-((g/l)*theta)-(q*omega)
 
 
-
 def RK4_step(f, k, theta, w, dt, t):
     """
     Calculates one step of the RK4-algorithm.
@@ -51,7 +50,6 @@ def RK4_step(f, k, theta, w, dt, t):
     f4 = f(theta,w + dt*k3,t)
     return theta + (dt/6)*(f1 + (2*f2) + (2*f3) + f4), w + (dt/6)*(k1 + (2*k2) + (2*k3) + k4)
 
-
 def RK4_method(k, f, theta__0, omega__0, dt):
     """
     Computes theta and w (omega).  
@@ -66,7 +64,7 @@ def RK4_method(k, f, theta__0, omega__0, dt):
     
     return theta, w, t
     """
-    t = np.linspace(0,t_f,int(t_f/dt))
+    t = np.linspace(t_i,t_f,int(t_f/dt))
     theta = np.zeros(len(t))
     omega = np.zeros(len(t))
     
