@@ -177,6 +177,7 @@ omega_D_arr = [1,3,5,7,9]
 
 
 plt.figure("Omega_D")
+plt.title("Differing drive frequency (Wd)")
 for i in range(len(omega_D_arr)):
     omega_D = omega_D_arr[i]
     theta_RK4,omega_RK4,t_RK4 = RK4_method(d_theta, d_omega, theta_0, omega_0, dt)
@@ -197,6 +198,7 @@ q_arr = [0.2,0.6,1.0,1.4,1.8]
 
 
 plt.figure("Friction")
+plt.title("Differing friction (q)")
 for i in range(len(q_arr)):
     q = q_arr[i]
     theta_RK4,omega_RK4,t_RK4 = RK4_method(d_theta, d_omega, theta_0, omega_0, dt)
@@ -220,6 +222,7 @@ q_arr = [3,5.6,12]
 q_arr_desc = ["Underkritisk","Kritisk","Overkritisk"]
 
 plt.figure("Criticality")
+plt.title("Dampening, with differing q (friction)")
 for i in range(len(q_arr)):
     q = q_arr[i]
     theta_RK4,omega_RK4,t_RK4 = RK4_method(d_theta, d_omega, theta_0, omega_0, dt)
