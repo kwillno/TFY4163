@@ -88,7 +88,7 @@ plt.show()
 
 """
 Start of assignment 2
-Test of convergense in dt for RK4 method
+Test of convergence in dt for RK4 method
 And same for Euler-Cromer method
 """
 
@@ -118,6 +118,7 @@ theta_ec,omega_ec,t_ec = euler_cromer_method(theta_0,omega_0,dt)
 Code for plotting EC and diff(RK4,EC)
 Not used in current implementation
 
+
 plt.figure("EC")
 plt.title("Calculation using Euler-Cromer")
 plt.plot(t_ec,theta_ec,label="Displacement (rad)")
@@ -132,11 +133,25 @@ plt.show()
 """
 
 
-
 dt_i = 0.0001
 dt_f = 0.1
-d_dt = dt_i
+d_dt = dt_i*5
 
 dt_arr = np.linspace(dt_i,dt_f,int(dt_f/d_dt))
+conv_RK4 = np.zeros(int(dt_f/d_dt))
+conv_EC = np.zeros(int(dt_f/d_dt))
 
+for i in range(int(dt_f/d_dt)):
+    theta_RK4, omega_RK4,t_RK4 = RK4_method(d_theta, d_omega, theta_0, omega_0, dt_arr[i])
+    theta_EC, omega_EC,t_EC = euler_cromer_method(theta_0, omega_0, dt_arr[i])
+
+    conv_RK4[i] = theta_RK4[0] - theta_RK4[-1]
+    conv_EC[i] = theta_EC[0] - theta_EC[-1]
+
+plt.figure("Convergence")
+plt.title("Convergence with variable dt (EC & RK4)")
+plt.plot(dt_arr,conv_RK4,label="RK4")
+plt.plot(dt_arr,conv_EC,label="EC")
+plt.legend(loc="upper right")
+plt.show()
 
