@@ -51,6 +51,7 @@ def RK4_step(f, k, theta, w, dt, t):
     f4 = f(theta,w + dt*k3,t)
     return theta + (dt/6)*(f1 + (2*f2) + (2*f3) + f4), w + (dt/6)*(k1 + (2*k2) + (2*k3) + k4)
 
+
 def RK4_method(k, f, theta__0, omega__0, dt):
     """
     Computes theta and w (omega).  
