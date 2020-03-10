@@ -122,19 +122,19 @@ theta_ec,omega_ec,t_ec = euler_cromer_method(theta_0,omega_0,dt)
 Code for plotting EC and diff(RK4,EC)
 Not used in current implementation
 
-
+"""
 plt.figure("EC")
 plt.title("Calculation using Euler-Cromer")
 plt.plot(t_ec,theta_ec,label="Displacement (rad)")
 plt.legend(loc="upper right")
-plt.show()
+#plt.show()
 
 plt.figure("Diff EC-RK4")
 plt.title("Difference in calculation (EC-RK4)")
 plt.plot(t_RK4,theta_ec-theta_RK4,label="Displacement (rad)")
 plt.legend(loc="upper right")
-plt.show()
-"""
+#plt.show()
+
 
 
 dt_i = 0.0001
@@ -147,25 +147,31 @@ conv_EC = np.zeros(int(dt_f/d_dt))
 
 # Energy functions
 
+E_kin = lambda omega : (1/2)*m*l**2*omega**2
+E_pot = lambda theta : (1/2)*m*g*l*theta**2
+
 E_tot = lambda theta,omega : (1/2)*m*l**2*omega**2 + (1/2)*m*g*l*theta**2
 
 
 for i in range(int(dt_f/d_dt)):
-    theta_RK4, omega_RK4,t_RK4 = RK4_method(d_theta, d_omega, theta_0, omega_0, dt_arr[i])
-    theta_EC, omega_EC,t_EC = euler_cromer_method(theta_0, omega_0, dt_arr[i])
+    theta_RK4,omega_RK4,t_RK4 = RK4_method(d_theta, d_omega, theta_0, omega_0, dt_arr[i])
+    theta_EC,omega_EC,t_EC = euler_cromer_method(theta_0, omega_0, dt_arr[i])
+    
+    conv_RK4[i] = abs((E_kin(omega_RK4[-1]) + E_pot(theta_RK4[-1])) - (E_kin(omega_RK4[0]) + E_pot(theta_RK4[0])))
+    conv_EC[i] = abs((E_kin(omega_EC[-1]) + E_pot(theta_EC[-1])) - (E_kin(omega_EC[0]) + E_pot(theta_EC[0])))
 
-    conv_RK4[i] = E_tot(theta_RK4[-1],omega_RK4[-1]) - E_tot(theta_RK4[0],omega_RK4[0])
-    conv_EC[i] = E_tot(theta_EC[-1],omega_EC[-1]) - E_tot(theta_EC[0],omega_EC[0])
 
-    #conv_RK4[i] = theta_RK4[-1] - theta_RK4[0]
-    #conv_EC[i] = theta_EC[-1] - theta_EC[0]
-
-plt.figure("Convergence")
-plt.title("Convergence with variable dt (EC & RK4)")
-plt.plot(dt_arr,conv_RK4,label="RK4")
-plt.plot(dt_arr,conv_EC,label="EC")
+plt.figure("Convergence EC")
+plt.title("Convergence with variable dt (EC)")
+plt.plot(dt_arr,conv_EC,".b",label="EC")
 plt.legend(loc="upper right")
-plt.show()
+#plt.show()
+
+plt.figure("Convergence RK4")
+plt.title("Convergence with variable dt (RK4)")
+plt.plot(dt_arr,conv_RK4,".b",label="RK4")
+plt.legend(loc="upper right")
+#plt.show()
 
 """
 Start of assignment 3
