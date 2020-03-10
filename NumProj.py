@@ -154,18 +154,18 @@ for i in range(int(dt_f/d_dt)):
     theta_RK4, omega_RK4,t_RK4 = RK4_method(d_theta, d_omega, theta_0, omega_0, dt_arr[i])
     theta_EC, omega_EC,t_EC = euler_cromer_method(theta_0, omega_0, dt_arr[i])
 
-    #conv_RK4[i] = E_tot(theta_RK4[-1],omega_RK4[-1]) - E_tot(theta_RK4[0],omega_RK4[0])
-    #conv_EC[i] = E_tot(theta_EC[-1],omega_EC[-1]) - E_tot(theta_EC[0],omega_EC[0])
+    conv_RK4[i] = E_tot(theta_RK4[-1],omega_RK4[-1]) - E_tot(theta_RK4[0],omega_RK4[0])
+    conv_EC[i] = E_tot(theta_EC[-1],omega_EC[-1]) - E_tot(theta_EC[0],omega_EC[0])
 
-    conv_RK4[i] = theta_RK4[-1] - theta_RK4[0]
-    conv_EC[i] = theta_EC[-1] - theta_EC[0]
+    #conv_RK4[i] = theta_RK4[-1] - theta_RK4[0]
+    #conv_EC[i] = theta_EC[-1] - theta_EC[0]
 
 plt.figure("Convergence")
 plt.title("Convergence with variable dt (EC & RK4)")
 plt.plot(dt_arr,conv_RK4,label="RK4")
 plt.plot(dt_arr,conv_EC,label="EC")
 plt.legend(loc="upper right")
-#lt.show()
+plt.show()
 
 """
 Start of assignment 3
