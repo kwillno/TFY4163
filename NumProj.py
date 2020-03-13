@@ -85,8 +85,9 @@ theta_RK4,omega_RK4,t_RK4 = RK4_method(d_theta, d_omega, theta_0, omega_0, dt)
 
 plt.figure("RK4")
 plt.title("Calculation using Runge-Kutta 4")
-plt.plot(t_RK4,theta_RK4,label="Displacement (rad)")
-plt.legend(loc="upper right")
+plt.plot(t_RK4,theta_RK4)
+plt.xlabel("Time (s)")
+plt.ylabel("Displacement (rad)")
 #plt.show()
 
 
@@ -122,7 +123,7 @@ theta_ec,omega_ec,t_ec = euler_cromer_method(theta_0,omega_0,dt)
 Code for plotting EC and diff(RK4,EC)
 Not used in current implementation
 
-"""
+
 plt.figure("EC")
 plt.title("Calculation using Euler-Cromer")
 plt.plot(t_ec,theta_ec,label="Displacement (rad)")
@@ -134,7 +135,7 @@ plt.title("Difference in calculation (EC-RK4)")
 plt.plot(t_RK4,theta_ec-theta_RK4,label="Displacement (rad)")
 plt.legend(loc="upper right")
 #plt.show()
-
+"""
 
 
 dt_i = 0.0001
@@ -163,14 +164,16 @@ for i in range(int(dt_f/d_dt)):
 
 plt.figure("Convergence EC")
 plt.title("Convergence with variable dt (EC)")
-plt.plot(dt_arr,conv_EC,".b",label="EC")
-plt.legend(loc="upper right")
+plt.plot(dt_arr,conv_EC,".b")
+plt.xlabel("Timestep (s)")
+plt.ylabel("Energydifference (J)")
 #plt.show()
 
 plt.figure("Convergence RK4")
 plt.title("Convergence with variable dt (RK4)")
-plt.plot(dt_arr,conv_RK4,".b",label="RK4")
-plt.legend(loc="upper right")
+plt.plot(dt_arr,conv_RK4,".b")
+plt.xlabel("Timestep (s)")
+plt.ylabel("Energydifference (J)")
 #plt.show()
 
 """
@@ -189,6 +192,8 @@ for i in range(len(omega_D_arr)):
     theta_RK4,omega_RK4,t_RK4 = RK4_method(d_theta, d_omega, theta_0, omega_0, dt)
     plt.plot(t_RK4,theta_RK4,label="Omega_D = " + str(omega_D_arr[i]))
 plt.legend(loc="upper right")
+plt.xlabel("Time (s)")
+plt.ylabel("Displacement (rad)")
 #plt.show()
 
 omega_D = 3.13
@@ -210,6 +215,8 @@ for i in range(len(q_arr)):
     theta_RK4,omega_RK4,t_RK4 = RK4_method(d_theta, d_omega, theta_0, omega_0, dt)
     plt.plot(t_RK4,theta_RK4,label="q = " + str(q_arr[i]))
 plt.legend(loc="upper right")
+plt.xlabel("Time (s)")
+plt.ylabel("Displacement (rad)")
 #plt.show()
 
 q = 1.0
@@ -234,6 +241,8 @@ for i in range(len(q_arr)):
     theta_RK4,omega_RK4,t_RK4 = RK4_method(d_theta, d_omega, theta_0, omega_0, dt)
     plt.plot(t_RK4,theta_RK4,label=q_arr_desc[i])
 plt.legend(loc="upper right")
+plt.xlabel("Time (s)")
+plt.ylabel("Displacement (rad)")
 
 endTime = time.time()
 print("Runtime: " + str(endTime-startTime)[:5])
