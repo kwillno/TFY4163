@@ -10,6 +10,8 @@ Below there is a list of due dates for the different assignments.
   - January 23rd
 - Numerical Assignment 2  
   - February 20th
+- Numerical Assignment 3
+  - March 12th
 
 # Numerical Project 
 
